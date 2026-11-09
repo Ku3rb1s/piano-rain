@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0c0c0f">
+<title>Piano Rain</title>
+<meta name="description" content="Klavier lernen mit fallenden Noten: Stell dein iPad vors Klavier – Piano Rain hört zu und zeigt dir Ton für Ton, was als Nächstes kommt.">
+<link rel="apple-touch-icon" href="https://ku3rb1s.github.io/piano-rain/apple-touch-icon.png?v=1">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=1">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=1">
+<link rel="manifest" href="manifest.json?v=1">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Piano Rain">
+<link rel="preload" href="fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css?v=1">
+<link rel="stylesheet" href="css/base.css?v=1">
+<link rel="stylesheet" href="css/app.css?v=1">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.8"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.8"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.8"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.8"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14" stroke-width="3.2"/></symbol>
+  <symbol id="i-install" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 7v7M9 11l3 3 3-3M10.5 18.5h3"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18.5h10.5a4 4 0 0 0 .6-7.96A6 6 0 0 0 6.6 9.1 4.75 4.75 0 0 0 7 18.5z"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-restart" viewBox="0 0 24 24"><path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1"/><path d="M3.5 4v5h5"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.2 0 1.8-.8 1.8-1.7 0-1.3-1.2-1.6-1.2-2.8 0-1 .8-1.7 1.8-1.7h2.1A4.5 4.5 0 0 0 21 10.3C21 6.2 17 3 12 3z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10.5" cy="7" r="1.2"/><circle cx="15" cy="7.5" r="1.2"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-keys" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M7.5 5v14M12 5v14M16.5 5v14"/><path d="M6 5h3v8H6zM10.5 5h3v8h-3zM15 5h3v8h-3z" fill="currentColor"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 2.5h8l4.5 4.5v14.5H6z"/><path d="M14 2.5V7h4.5M9.5 13h5M9.5 16.5h5"/></symbol>
+  <symbol id="i-loop" viewBox="0 0 24 24"><path d="M4 12a6 6 0 0 1 6-6h9M16 3l3 3-3 3M20 12a6 6 0 0 1-6 6H5M8 21l-3-3 3-3"/></symbol>
+  <symbol id="i-headph" viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="4.5" height="6.5" rx="1.5"/><rect x="16.5" y="14" width="4.5" height="6.5" rx="1.5"/></symbol>
+</svg>
+
+<header>
+  <button class="logo logo-btn" id="logoBtn" aria-label="Zur Startseite"><img src="icon-192.png?v=1" alt=""><span>Piano Rain</span></button>
+  <div class="hdr-r">
+    <button class="hbtn" id="btnSettings" aria-label="Einstellungen"><svg class="ic"><use href="#i-sliders"/></svg><span class="lbl">Einstellungen</span></button>
+  </div>
+</header>
+
+<main>
+  <!-- ============ Start: Liederbuch ============ -->
+  <div id="home">
+    <section class="stage glass hero">
+      <div class="round-meta"><span class="pill" id="streakPill"></span><span class="pill" id="starPill"></span></div>
+      <div class="rain-demo" aria-hidden="true"><i style="--x:1;--h:46px;--d:0s"></i><i class="l" style="--x:3;--h:30px;--d:-1.1s"></i><i style="--x:4;--h:62px;--d:-.6s"></i><i style="--x:6;--h:34px;--d:-1.6s"></i><i class="l" style="--x:2;--h:40px;--d:-2.1s"></i><i style="--x:5;--h:28px;--d:-2.6s"></i></div>
+      <div class="cat">
+        <div class="cat-kicker">Klavier lernen mit fallenden Noten</div>
+        <div class="home-title">Piano Rain</div>
+        <div class="cat-sub">Stell dein iPad vors Klavier – Piano Rain hört zu und zeigt dir Ton für Ton, was als Nächstes kommt.</div>
+      </div>
+      <button class="mic-card" id="micCard">
+        <span class="cell-ic" id="micIc"><svg class="ic"><use href="#i-mic"/></svg></span>
+        <span class="grow"><b id="micTitle">Mikrofon einrichten</b><span class="sub" id="micSub">Einmal kurz: Ruhe messen und ein C spielen</span></span>
+        <svg class="ic chev"><use href="#i-chev"/></svg>
+      </button>
+    </section>
+
+    <section class="glass panel">
+      <div class="book-tabs" id="bookTabs"></div>
+      <div class="group-f center" id="bookInfo"></div>
+      <div class="group icons songlist" id="songList"></div>
+      <div class="mine-tools hidden" id="mineTools">
+        <label class="ghost file-btn"><svg class="ic"><use href="#i-file"/></svg><span>MIDI-Datei laden</span><input type="file" id="midiFile" accept=".mid,.midi,audio/midi,audio/x-midi" hidden></label>
+        <p class="group-f">Deine eigenen MIDI-Dateien bleiben nur auf diesem Gerät – sie werden nicht hochgeladen und nicht abgeglichen. Bitte nur für dich selbst, nicht zum Weitergeben.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ Lied einstellen ============ -->
+  <section id="setup" class="stage glass hidden">
+    <div class="round-meta"><button class="pill pill-btn" id="setupBack"><svg class="ic"><use href="#i-back"/></svg>Liederbuch</button><span class="pill stars-pill" id="setupStars" data-no-tx></span></div>
+    <div class="cat">
+      <div class="cat-kicker" id="setupBy" data-no-tx></div>
+      <div class="setup-title" id="setupTitle" data-no-tx></div>
+      <div class="cat-sub" id="setupInfo"></div>
+    </div>
+
+    <div class="group-h">Modus</div>
+    <div class="seg" id="setMode">
+      <button data-v="wait">⏸ Warten<small>Das Lied wartet auf dich</small></button>
+      <button data-v="tempo">🎵 Im Takt<small>Das Lied läuft weiter</small></button>
+    </div>
+    <div class="group-h">Tempo</div>
+    <div class="seg" id="setSpeed">
+      <button data-v="0.5">50 %</button>
+      <button data-v="0.75">75 %</button>
+      <button data-v="1">100 %</button>
+    </div>
+    <div id="handsBox">
+      <div class="group-h">Hände</div>
+      <div class="seg" id="setHands">
+        <button data-v="r">✋ Rechts</button>
+        <button data-v="l">🤚 Links</button>
+        <button data-v="b">🙌 Beide</button>
+      </div>
+    </div>
+    <div class="group" style="margin-top:16px">
+      <label class="cell"><span class="grow">Notenlinien<span class="sub">Die Noten zusätzlich wie im Notenheft – so lernst du nebenbei Noten lesen</span></span><span class="switch"><input type="checkbox" id="setStaff"><span></span></span></label>
+      <label class="cell"><span class="grow">Notennamen<span class="sub">Namen auf den fallenden Noten und Tasten</span></span><span class="switch"><input type="checkbox" id="setNames"><span></span></span></label>
+      <label class="cell"><span class="grow">Abschnitt üben<span class="sub" id="loopSub">Nur ein paar Takte, immer wieder</span></span><span class="switch"><input type="checkbox" id="setLoop"><span></span></span></label>
+      <div class="cell loop-row hidden" id="loopRow">
+        <span class="grow">Takt</span>
+        <select id="loopFrom" aria-label="Von Takt"></select><span class="muted">bis</span><select id="loopTo" aria-label="Bis Takt"></select>
+      </div>
+    </div>
+    <div class="group-f" id="starRules"></div>
+    <div class="controls" style="margin-top:18px">
+      <button class="big" id="goBtn"><svg class="ic"><use href="#i-play"/></svg>Los geht’s</button>
+      <button class="ghost" id="listenBtn"><svg class="ic"><use href="#i-headph"/></svg><span id="listenTxt">Anhören</span></button>
+    </div>
+    <p class="group-f center" id="inputNote"></p>
+  </section>
+
+  <!-- ============ Ende ============ -->
+  <section id="end" class="stage glass hidden">
+    <div class="round-meta"><span class="pill" id="endMode"></span><span class="pill" id="endBest"></span></div>
+    <div class="lib-hero">
+      <div class="end-stars" id="endStars" data-no-tx></div>
+      <div class="cat-kicker" id="endKicker"></div>
+      <div class="lib-num" id="endScore">0</div>
+      <div class="lib-sub" id="endSub"></div>
+    </div>
+    <div class="end-stats" id="endStats"></div>
+    <div class="end-note hidden" id="endNote"></div>
+    <div class="controls" style="margin-top:20px">
+      <button class="big" id="againBtn"><svg class="ic"><use href="#i-restart"/></svg>Nochmal</button>
+      <button class="ghost" id="nextBtn"><svg class="ic"><use href="#i-chev"/></svg>Nächstes Lied</button>
+      <button class="ghost" id="homeBtn"><svg class="ic"><use href="#i-grid"/></svg>Liederbuch</button>
+    </div>
+  </section>
+</main>
+
+<!-- ============ Spiel (ganzer Bildschirm) ============ -->
+<section id="play" class="hidden">
+  <div class="play-bar">
+    <button class="pbtn" id="playClose" aria-label="Beenden"><svg class="ic"><use href="#i-x"/></svg></button>
+    <div class="pinfo"><b id="playTitle" data-no-tx></b><span id="playSub"></span></div>
+    <span class="meter" id="micMeter" title="Mikrofon"><svg class="ic"><use href="#i-mic"/></svg><i><b></b></i></span>
+    <span class="pscore" id="playScore"></span>
+    <button class="pbtn" id="playPause" aria-label="Pause"><svg class="ic"><use href="#i-pause"/></svg></button>
+  </div>
+  <div class="pprog"><i id="playProg"></i></div>
+  <div class="play-area" id="playArea">
+    <canvas id="cv"></canvas>
+    <div class="play-msg hidden" id="playMsg"><b id="playMsgBig"></b><span id="playMsgTxt"></span><button class="big hidden" id="playMsgBtn"></button></div>
+    <div class="hint-bubble hidden" id="hintBubble"></div>
+  </div>
+</section>
+
+<!-- ============ Einrichtung Mikrofon ============ -->
+<dialog id="calDlg" class="ask cal">
+  <div class="cal-step" data-step="intro">
+    <div class="cal-ic"><svg class="ic"><use href="#i-mic"/></svg></div>
+    <h2>So hört Piano Rain zu</h2>
+    <ul class="cal-list">
+      <li>Das Klavier spielt über seine Lautsprecher – nicht über Kopfhörer, sonst hört das iPad nichts.</li>
+      <li>Stell das iPad aufs Notenpult oder direkt vors Klavier.</li>
+      <li>Lautstärke am Klavier mittel, im Raum möglichst ruhig.</li>
+      <li>Piano Rain spielt selbst keine Töne, während es zuhört.</li>
+    </ul>
+    <div class="ask-btns"><button class="ghost" data-cal="skip">Später</button><button class="big" data-cal="start">Mikrofon einschalten</button></div>
+  </div>
+  <div class="cal-step" data-step="noise">
+    <div class="cal-ic pulse"><svg class="ic"><use href="#i-mic"/></svg></div>
+    <h2>Kurz still sein …</h2>
+    <p>Piano Rain misst das Grundrauschen im Raum.</p>
+    <div class="cal-bar"><i id="calNoiseBar"></i></div>
+  </div>
+  <div class="cal-step" data-step="note">
+    <h2 id="calNoteTitle">Spiel jetzt das C in der Mitte</h2>
+    <p id="calNoteTxt">Das weiße C direkt links von den zwei schwarzen Tasten – ungefähr in der Mitte der Tastatur.</p>
+    <canvas id="calKeys" width="560" height="120"></canvas>
+    <div class="cal-level"><span>Mikrofon</span><i><b id="calLevel"></b></i></div>
+    <p class="cal-fb" id="calFb"></p>
+    <div class="ask-btns"><button class="ghost" data-cal="skip">Überspringen</button><button class="ghost" data-cal="again">Neu messen</button></div>
+  </div>
+  <div class="cal-step" data-step="done">
+    <div class="cal-ic ok">✓</div>
+    <h2>Alles bereit!</h2>
+    <p id="calDoneTxt"></p>
+    <div class="ask-btns one"><button class="big" data-cal="close">Los geht’s</button></div>
+  </div>
+  <div class="cal-step" data-step="error">
+    <div class="cal-ic bad">!</div>
+    <h2>Kein Mikrofon</h2>
+    <p id="calErrTxt"></p>
+    <div class="ask-btns"><button class="ghost" data-cal="tap">Bildschirmtasten</button><button class="big" data-cal="start">Nochmal versuchen</button></div>
+  </div>
+</dialog>
+
+<!-- ============ Einstellungen ============ -->
+<dialog id="sheetSettings" class="sheet">
+  <div class="sheet-head">
+    <span class="grab"></span>
+    <button class="nav-back invisible" id="navBack"><svg class="ic"><use href="#i-back"/></svg>Einstellungen</button>
+    <div class="nav-title" id="navTitle">Einstellungen</div>
+    <button class="nav-done" data-close>Fertig</button>
+  </div>
+  <div class="sheet-body">
+    <section class="page active" data-page="main" data-title="Einstellungen">
+      <div class="group icons prof-group" style="margin-top:14px">
+        <div class="cell prof">
+          <button class="prof-emo" id="profEmoji" type="button" aria-label="Avatar wechseln" title="Avatar wechseln">🎧</button>
+          <input id="profName" class="bare" placeholder="Dein Name" maxlength="24" autocomplete="nickname" enterkeyhint="done" data-no-tx>
+        </div>
+      </div>
+      <div class="group-f">Dein Profil gilt für alle Spiele der Jukebox.</div>
+      <div class="group icons" style="margin-top:12px">
+        <a class="cell tap" id="syncLink" href="https://ku3rb1s.github.io/jukebox/#sync">
+          <span class="cell-ic" id="syncIc" style="background:linear-gradient(135deg,#ff4f86,#fbbf24)"><svg class="ic"><use href="#i-cloud"/></svg></span>
+          <span class="grow"><span id="syncTitle">Auf anderen Geräten weiterspielen</span><span class="sub" id="syncSub">Rekorde, Serien und Profil mit einem Code mitnehmen – ohne E-Mail und Passwort</span></span>
+          <svg class="ic chev"><use href="#i-chev"/></svg>
+        </a>
+      </div>
+      <div class="group icons" style="margin-top:12px">
+        <label class="cell">
+          <span class="cell-ic" style="background:#a855f7"><svg class="ic"><use href="#i-globe"/></svg></span>
+          <span class="grow">Sprache</span>
+          <select id="langSel" aria-label="Sprache"></select>
+        </label>
+      </div>
+      <div class="group icons" style="margin-top:12px">
+        <button class="cell tap" data-go="input">
+          <span class="cell-ic" style="background:linear-gradient(135deg,#22c55e,#0ea5e9)"><svg class="ic"><use href="#i-mic"/></svg></span>
+          <span class="grow">Mikrofon &amp; Eingabe<span class="sub" id="subInput"></span></span>
+          <svg class="ic chev"><use href="#i-chev"/></svg>
+        </button>
+        <button class="cell tap" data-go="view">
+          <span class="cell-ic" style="background:#0ea5e9"><svg class="ic"><use href="#i-eye"/></svg></span>
+          <span class="grow">Anzeige<span class="sub" id="subView"></span></span>
+          <svg class="ic chev"><use href="#i-chev"/></svg>
+        </button>
+        <button class="cell tap" data-go="design">
+          <span class="cell-ic" style="background:linear-gradient(135deg,#8b6cff,#ff4fa3)"><svg class="ic"><use href="#i-palette"/></svg></span>
+          <span class="grow">Design<span class="sub" id="subDesign"></span></span>
+          <svg class="ic chev"><use href="#i-chev"/></svg>
+        </button>
+        <button class="cell tap hidden" id="btnInstall">
+          <span class="cell-ic" style="background:linear-gradient(135deg,#10b981,#0ea5e9)"><svg class="ic"><use href="#i-install"/></svg></span>
+          <span class="grow">Als App installieren<span class="sub">Startet schneller, im Vollbild und mit eigenem Symbol</span></span>
+          <svg class="ic chev"><use href="#i-chev"/></svg>
+        </button>
+      </div>
+      <div class="group icons" style="margin-top:22px">
+        <button class="cell tap" data-go="stats">
+          <span class="cell-ic" style="background:linear-gradient(135deg,#22d3ee,#3b82f6)"><svg class="ic"><use href="#i-chart"/></svg></span>
+          <span class="grow">Deine Statistik<span class="sub" id="subStats"></span></span>
+          <svg class="ic chev"><use href="#i-chev"/></svg>
+        </button>
+        <button class="cell tap" data-go="data">
+          <span class="cell-ic" style="background:#6b7280"><svg class="ic"><use href="#i-music"/></svg></span>
+          <span class="grow">Lieder &amp; Daten<span class="sub">Woher die Noten kommen</span></span>
+          <svg class="ic chev"><use href="#i-chev"/></svg>
+        </button>
+      </div>
+      <div class="group icons" style="margin-top:22px">
+        <a class="cell tap" href="https://ku3rb1s.github.io/jukebox/">
+          <span class="cell-ic" style="background:linear-gradient(135deg,#3a2a52,#ff5a7a)"><svg class="ic"><use href="#i-grid"/></svg></span>
+          <span class="grow">Alle Spiele<span class="sub">Musik-Bingo, Needle Drop und mehr</span></span>
+          <svg class="ic chev"><use href="#i-chev"/></svg>
+        </a>
+      </div>
+      <button class="app-version" id="appVersion" data-go="changes"></button>
+    </section>
+
+    <section class="page" data-page="input" data-title="Mikrofon &amp; Eingabe">
+      <div class="group-h">Wie spielst du?</div>
+      <div class="group icons">
+        <label class="cell tap"><span class="cell-ic" style="background:#22c55e"><svg class="ic"><use href="#i-mic"/></svg></span><span class="grow">Klavier + Mikrofon<span class="sub">Das iPad (oder Handy) hört dein Klavier</span></span><input type="radio" name="inp" value="mic" class="radio"></label>
+        <label class="cell tap"><span class="cell-ic" style="background:#f59e0b"><svg class="ic"><use href="#i-keys"/></svg></span><span class="grow">Bildschirmtasten<span class="sub">Zum Ausprobieren ohne Klavier – tippen statt spielen</span></span><input type="radio" name="inp" value="tap" class="radio"></label>
+      </div>
+      <div class="group icons" style="margin-top:16px">
+        <button class="cell tap" id="btnCal">
+          <span class="cell-ic" style="background:linear-gradient(135deg,#22c55e,#0ea5e9)"><svg class="ic"><use href="#i-mic"/></svg></span>
+          <span class="grow">Mikrofon einrichten<span class="sub" id="calInfo"></span></span>
+          <svg class="ic chev"><use href="#i-chev"/></svg>
+        </button>
+      </div>
+      <div class="group-f">Tipp: Hört Piano Rain einen Ton nicht, spiel etwas kräftiger, dreh das Klavier lauter oder stell das iPad näher. Spielst du mit Kopfhörern am Klavier, hört das Mikrofon nichts.</div>
+    </section>
+
+    <section class="page" data-page="view" data-title="Anzeige">
+      <div class="group" style="margin-top:14px">
+        <label class="cell"><span class="grow">Notennamen<span class="sub">Namen auf den fallenden Noten und Tasten</span></span><span class="switch"><input type="checkbox" id="setNames2"><span></span></span></label>
+        <label class="cell"><span class="grow">Notenlinien<span class="sub">Die Noten zusätzlich wie im Notenheft</span></span><span class="switch"><input type="checkbox" id="setStaff2"><span></span></span></label>
+        <label class="cell"><span class="grow">Töne &amp; Konfetti<span class="sub">Kurzer Klang am Ende eines Lieds, Konfetti bei drei Sternen</span></span><span class="switch"><input type="checkbox" id="setSfx"><span></span></span></label>
+      </div>
+      <div class="group-f">Die Namen folgen deiner Sprache: Deutsch und Norwegisch mit H, Französisch und Spanisch mit Do – Re – Mi.</div>
+    </section>
+
+    <section class="page" data-page="stats" data-title="Deine Statistik">
+      <div id="statsBox"></div>
+    </section>
+
+    <section class="page" data-page="changes" data-title="Neuerungen">
+      <div id="changesList" class="changes"></div>
+    </section>
+
+    <section class="page" data-page="design" data-title="Design">
+      <div class="group-h">Farbthema</div>
+      <div class="theme-row" id="themeRow"></div>
+      <div class="group-f">Gilt für alle Spiele der Jukebox. OLED: echtes Schwarz – spart auf Handys mit OLED-Display Akku.</div>
+    </section>
+
+    <section class="page" data-page="data" data-title="Lieder &amp; Daten">
+      <div class="group" style="margin-top:14px">
+        <div class="cell"><span class="grow">Nur gemeinfreie Lieder<span class="sub">Volks- und Weihnachtslieder und Klassik, deren Urheber seit über 70 Jahren tot sind. Alle Fassungen sind für Piano Rain selbst gesetzt und vereinfacht.</span></span></div>
+        <div class="cell"><span class="grow">Meine Lieder<span class="sub">Eigene MIDI-Dateien bleiben nur auf diesem Gerät. Sie werden nie hochgeladen und nicht abgeglichen.</span></span></div>
+        <div class="cell"><span class="grow">Mikrofon<span class="sub">Der Klang wird nur auf dem Gerät ausgewertet, nichts wird aufgenommen oder verschickt.</span></span></div>
+        <div class="cell"><span class="grow">MIDI-Dateien lesen<span class="sub" data-no-tx>@tonejs/midi · MIT License · © 2016 Yotam Mann</span></span></div>
+      </div>
+      <div class="group" style="margin-top:22px">
+        <button class="cell tap danger" id="btnResetAll"><span class="grow">Alle gespeicherten Daten löschen<span class="sub">Sterne, Statistik, Einstellungen und Meine Lieder</span></span></button>
+      </div>
+    </section>
+  </div>
+</dialog>
+
+<dialog id="askDlg" class="ask">
+  <p id="askText" data-no-tx></p>
+  <div class="ask-btns"><button class="ghost" id="askNo">Abbrechen</button><button class="big" id="askOk" data-no-tx></button></div>
+</dialog>
+
+<div id="toast" class="hidden"></div>
+
+<script src="js/lang/en.js?v=1"></script>
+<script src="js/lang/fr.js?v=1"></script>
+<script src="js/lang/es.js?v=1"></script>
+<script src="js/lang/nb.js?v=1"></script>
+<script src="js/profile.js?v=1"></script>
+<script src="js/sync.js?v=1"></script>
+<script src="js/i18n.js?v=1"></script>
+<script src="js/lib/midi.js?v=1"></script>
+<script src="js/songs.js?v=1"></script>
+<script src="js/ear.js?v=1"></script>
+<script src="js/game.js?v=1"></script>
+<script src="js/pwa.js?v=1"></script>
+</body>
+</html>
