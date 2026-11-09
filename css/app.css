@@ -31,6 +31,9 @@ button.big{color:#04201b}
 .mic-card .sub{font-size:.82rem;color:var(--muted);font-weight:500}
 .mic-card .chev{color:var(--muted)}
 .mic-card .cell-ic{background:linear-gradient(135deg,#f59e0b,#ef4444)}
+.try-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:10px;padding:.7em 1em;border-radius:16px;
+  color:var(--text);border:1px solid var(--line);background:rgba(255,255,255,.05);font-weight:700;box-shadow:none}
+.try-btn .ic{width:1.2em;height:1.2em}
 .mic-card.ok{background:rgba(255,255,255,.05);border-color:var(--line)}
 .mic-card.ok .cell-ic{background:linear-gradient(135deg,#22c55e,#0ea5e9)}
 

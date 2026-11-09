@@ -292,6 +292,15 @@ class Ear {
     return valid >= 2 && up >= Math.max(2, .5 * valid) && oddUp >= 1 && tonal > (k < 2 ? 2 : 3) * noise;
   }
 
+  /* Klingt Taste m gerade deutlich (für Akkorde: ein Basston, der aus dem vorigen Schritt noch gehalten wird, zählt mit,
+     sobald die übrigen Töne des Akkords frisch angeschlagen sind)? */
+  present(m, S = [m]) {
+    const h = this.hist[this.hist.length - 1]; if (!h || m < LO || m > HI) return false;
+    const e = h.E[m - LO]; if (e < 4 * this.thr(m)) return false;
+    for (const d of [-2, -1, 1, 2]) { const n = m + d; if (!S.includes(n) && n >= LO && n <= HI && h.E[n - LO] > .8 * e) return false; }
+    return true;
+  }
+
   /* Prüfen: welche der Tasten S wurden nach Zeitpunkt from (ms) neu angeschlagen?
      used[m] = Nummer des Anschlags, der für Taste m schon verbraucht ist. only = nur diese Tasten prüfen (Akkord: Rest). Ergebnis: { m: Anschlag } */
   match(S, { from = -1e9, to = 1e12, used = {}, only = S } = {}) {

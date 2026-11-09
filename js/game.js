@@ -3,7 +3,7 @@
    Warten: das Lied hält an, bis der Ton (Akkord) kommt. Im Takt: das Lied läuft im gewählten Tempo, Treffer zählen.
    Liederbuch: js/songs.js. Eigene MIDI-Dateien („Meine Lieder“) bleiben in IndexedDB auf dem Gerät.
    Test ohne Klavier: ?test=1 (Bildschirmtasten erzeugen Klaviertöne, die durch die echte Erkennung gehen), &auto=1 spielt mit. */
-const APP_VERSION = '1.0.0', APP_DATE = '09.11.2026'; // bei jedem Update erhöhen + CHANGELOG.md ergänzen
+const APP_VERSION = '1.1.0', APP_DATE = '09.11.2026'; // bei jedem Update erhöhen + CHANGELOG.md ergänzen
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const { Ear, TestMic, Mic, freqOf } = PR_EAR;
@@ -131,7 +131,7 @@ class TapInput {
   press(m, now) { const t = { id: ++this.id, m, t: now, used: false }; this.taps.push(t); this.pending.push(t); this.level = 1; }
   match(S, { from = -1e9, to = 1e12, used = {}, only = S } = {}) {
     const out = {};
-    for (const m of only) { const t = [...this.taps].reverse().find(x => x.m === m && x.id > (used[m] || 0) && x.t >= from && x.t <= to); if (t) out[m] = t; }
+    for (const m of only) { const t = this.taps.find(x => x.m === m && x.id > (used[m] || 0) && x.t >= from && x.t <= to); if (t) out[m] = t; }
     return out;
   }
   take(m, t, used) { used[m] = Math.max(used[m] || 0, t.id); t.used = true; }
@@ -242,6 +242,7 @@ function judgeWait(now, dt) {
   const only = s.notes.filter(m => !s.hit[m]);
   const res = P.input.match(s.notes, { from: P.armT - 250, used: P.used, only });
   for (const [m, o] of Object.entries(res)) { P.input.take(+m, o, P.used); s.hit[m] = o.t; flash(+m, s.ns.find(n => n.m === +m)?.h || 'r', now); }
+  heldRest(s, now);
   if (s.notes.every(m => s.hit[m])) {
     s.done = true; s.grade = s.first ? 'perfect' : 'good';
     for (const n of s.ns) n.st = 'hit';
@@ -254,6 +255,12 @@ function judgeWait(now, dt) {
     if (P.hintT > 4500 && !P.hintShown) showHint(tx('Spiel: {n}', { n: s.ns.map(n => noteName(n.l, n.a)).join(' + ') }));
   }
 }
+// Akkord: Ist ein Teil frisch angeschlagen, zählt ein Ton, der (z. B. als gehaltener Basston) deutlich klingt, mit
+function heldRest(s, now) {
+  if (s.notes.length < 2 || !P.input.ear || !s.notes.some(m => s.hit[m])) return;
+  const t0 = Math.max(...s.notes.filter(m => s.hit[m]).map(m => s.hit[m]));
+  for (const m of s.notes) if (!s.hit[m] && P.input.ear.present(m, s.notes)) s.hit[m] = t0;
+}
 const stepReal = s => P.anchorT + (s.t - P.anchorB) / P.bps * 1000;
 function judgeTempo(now) {
   P.beat = P.anchorB + (now - P.anchorT) / 1000 * P.bps;
@@ -265,6 +272,7 @@ function judgeTempo(now) {
     const only = s.notes.filter(m => !s.hit[m]);
     const res = P.input.match(s.notes, { from: tr - W_MS + lat, to: tr + W_MS + lat, used: P.used, only });
     for (const [m, o] of Object.entries(res)) { P.input.take(+m, o, P.used); s.hit[m] = o.t - lat; flash(+m, s.ns.find(n => n.m === +m)?.h || 'r', now); }
+    heldRest(s, now);
     if (s.notes.every(m => s.hit[m])) {
       const err = s.notes.reduce((a, m) => a + s.hit[m], 0) / s.notes.length - tr;
       s.done = true; s.grade = Math.abs(err) <= PERFECT_MS ? 'perfect' : 'good'; s.err = err;
@@ -579,7 +587,9 @@ function drawStaff(now) {
 
 /* ---------- Tippen auf die Tastatur (Bildschirmtasten, Test-Klavier) ---------- */
 function keyAt(px, py) {
-  if (!KB || py < KB.top) return null;
+  if (!KB || py < KB.fallTop) return null;
+  // Bildschirmtasten: auch Tippen in die Spalte über der Taste zählt (größere Fläche auf dem Handy)
+  if (py < KB.top) { if (!(P?.input instanceof TapInput)) return null; py = KB.top + KB.kbH * .3; }
   for (let m = KB.lo; m <= KB.hi; m++) if (isBlack(m)) { const [kx, kw] = KB.x[m]; if (px >= kx && px <= kx + kw && py <= KB.top + KB.kbH * .62) return m; }
   for (const m of KB.whites) { const [kx] = KB.x[m]; if (px >= kx && px < kx + KB.ww) return m; }
   return null;
@@ -593,7 +603,18 @@ cv.addEventListener('pointerdown', e => {
 });
 function pressKey(m) {
   if (!P) return;
-  if (P.input instanceof TapInput || P.input.src === testMic) { P.input.press(m, clock()); if (P.input instanceof TapInput) flash(m, P.notes.find(n => n.m === m)?.h || 'r', clock()); }
+  if (P.input instanceof TapInput || P.input.src === testMic) { P.input.press(m, clock()); if (P.input instanceof TapInput) { flash(m, P.notes.find(n => n.m === m)?.h || 'r', clock()); tone(m); } }
+}
+// Klang der Bildschirmtasten (nur ohne Mikrofon – dann hört Piano Rain ja nicht zu)
+function tone(m, dur = .9) {
+  try {
+    actx ??= new (window.AudioContext || window.webkitAudioContext)();
+    if (actx.state !== 'running') actx.resume();
+    const at = actx.currentTime + .005, f = freqOf(m), g = actx.createGain();
+    g.gain.setValueAtTime(0, at); g.gain.linearRampToValueAtTime(.22, at + .006); g.gain.setTargetAtTime(.0001, at + .01, .35 * Math.pow(2, -(m - 60) / 24));
+    g.connect(actx.destination);
+    for (const [k, a] of [[1, 1], [2, .35], [3, .12], [4, .06]]) { const o = actx.createOscillator(), og = actx.createGain(); o.frequency.value = f * k; og.gain.value = a; o.connect(og).connect(g); o.start(at); o.stop(at + dur + .3); }
+  } catch {}
 }
 // Computertastatur im Bildschirmtasten-Modus: A S D F G H J K = C D E F G A H C (ab dem ersten C der Tastatur), W E T Z/Y U = schwarze Tasten
 const KEYMAP = { a: 0, w: 1, s: 2, e: 3, d: 4, f: 5, t: 6, g: 7, z: 8, y: 8, h: 9, u: 10, j: 11, k: 12, o: 13, l: 14, p: 15 };
@@ -830,6 +851,8 @@ function renderHome() {
   $('#micTitle').textContent = tap ? tx('Bildschirmtasten') : ok ? tx('Mikrofon eingerichtet') : tx('Mikrofon einrichten');
   $('#micSub').textContent = tap ? tx('Ohne Klavier zum Ausprobieren – in den Einstellungen umstellbar') : ok ? tx('Klavier über Lautsprecher, iPad davor – los geht’s') : tx('Einmal kurz: Ruhe messen und ein C spielen');
   $('#micCard use').setAttribute('href', tap ? '#i-keys' : '#i-mic');
+  $('#tryTxt').textContent = tap ? tx('Mit Klavier und Mikrofon spielen') : tx('Ohne Klavier ausprobieren');
+  $('#tryBtn use').setAttribute('href', tap ? '#i-mic' : '#i-keys');
 }
 let curSong = null;
 const curLoop = () => { const a = +$('#loopFrom').value, b = +$('#loopTo').value; return [Math.min(a, b), Math.max(a, b)]; };
@@ -842,6 +865,7 @@ function renderSetup(fresh = false) {
   $('#setupInfo').textContent = [s.mine ? '' : tx(LEVELS[s.lvl]), tx('{n} Takte', { n: pr.bars.length }), tx('ca. {n}', { n: fmtTime(secs) }) + ' ' + tx('bei 100 %')].filter(Boolean).join(' · ');
   $('#setupStars').innerHTML = [1, 2, 3].map(i => i <= starsOf(s) ? '★' : '☆').join('');
   $$('#setMode button').forEach(b => b.classList.toggle('on', b.dataset.v === opt.mode));
+  $$('#setInput button').forEach(b => b.classList.toggle('on', b.dataset.v === (useMic() ? 'mic' : 'tap')));
   $$('#setSpeed button').forEach(b => b.classList.toggle('on', +b.dataset.v === +opt.speed));
   const lh = hasLeft(s); $('#handsBox').classList.toggle('hidden', !lh);
   if (lh) $$('#setHands button').forEach(b => b.classList.toggle('on', b.dataset.v === opt.hands));
@@ -989,6 +1013,11 @@ $('#midiFile').onchange = async e => {
 };
 $('#micCard').onclick = () => { if (!useMic()) { $('#btnSettings').click(); goPage('input'); } else openCal(); };
 $('#setupBack').onclick = () => { stopPreview(); show('home'); renderHome(); };
+$('#setInput').onclick = e => { const b = e.target.closest('button'); if (b) { opt.input = b.dataset.v; saveOpt(); renderSetup(); } };
+$('#tryBtn').onclick = () => {
+  opt.input = useMic() ? 'tap' : 'mic'; saveOpt(); renderHome();
+  toast(useMic() ? tx('Klavier + Mikrofon an.') : tx('Bildschirmtasten an – tippe auf die Tasten.'));
+};
 $('#setMode').onclick = e => { const b = e.target.closest('button'); if (b) { opt.mode = b.dataset.v; saveOpt(); renderSetup(); } };
 $('#setSpeed').onclick = e => { const b = e.target.closest('button'); if (b) { opt.speed = +b.dataset.v; saveOpt(); stopPreview(); renderSetup(); } };
 $('#setHands').onclick = e => { const b = e.target.closest('button'); if (b) { opt.hands = b.dataset.v; saveOpt(); stopPreview(); renderSetup(); } };
@@ -1051,6 +1080,7 @@ if (TEST) self.PR = {
   },
   real() { clockT = null; if (P) loop(); },
   play: (m, at, dur = 400) => testMic?.play(m, at ?? clock(), dur),
+  tap: m => pressKey(m),                                     // Bildschirmtaste „drücken“ (wie ein Tipp)
 };
 
 /* ---------- Start ---------- */

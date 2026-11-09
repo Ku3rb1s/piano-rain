@@ -17,7 +17,7 @@
 <link rel="preload" href="fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/fonts.css?v=1">
 <link rel="stylesheet" href="css/base.css?v=1">
-<link rel="stylesheet" href="css/app.css?v=1">
+<link rel="stylesheet" href="css/app.css?v=2">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -66,6 +66,7 @@
         <span class="grow"><b id="micTitle">Mikrofon einrichten</b><span class="sub" id="micSub">Einmal kurz: Ruhe messen und ein C spielen</span></span>
         <svg class="ic chev"><use href="#i-chev"/></svg>
       </button>
+      <button class="ghost try-btn" id="tryBtn"><svg class="ic"><use href="#i-keys"/></svg><span id="tryTxt">Ohne Klavier ausprobieren</span></button>
     </section>
 
     <section class="glass panel">
@@ -98,6 +99,11 @@
       <button data-v="0.5">50 %</button>
       <button data-v="0.75">75 %</button>
       <button data-v="1">100 %</button>
+    </div>
+    <div class="group-h">Spielen mit</div>
+    <div class="seg" id="setInput">
+      <button data-v="mic">🎹 Klavier<small>Das iPad hört zu</small></button>
+      <button data-v="tap">👆 Bildschirm<small>Tasten antippen</small></button>
     </div>
     <div id="handsBox">
       <div class="group-h">Hände</div>
@@ -336,17 +342,17 @@
 
 <div id="toast" class="hidden"></div>
 
-<script src="js/lang/en.js?v=1"></script>
-<script src="js/lang/fr.js?v=1"></script>
-<script src="js/lang/es.js?v=1"></script>
-<script src="js/lang/nb.js?v=1"></script>
+<script src="js/lang/en.js?v=2"></script>
+<script src="js/lang/fr.js?v=2"></script>
+<script src="js/lang/es.js?v=2"></script>
+<script src="js/lang/nb.js?v=2"></script>
 <script src="js/profile.js?v=1"></script>
 <script src="js/sync.js?v=2"></script>
 <script src="js/i18n.js?v=1"></script>
 <script src="js/lib/midi.js?v=1"></script>
-<script src="js/songs.js?v=1"></script>
-<script src="js/ear.js?v=1"></script>
-<script src="js/game.js?v=1"></script>
+<script src="js/songs.js?v=2"></script>
+<script src="js/ear.js?v=2"></script>
+<script src="js/game.js?v=2"></script>
 <script src="js/pwa.js?v=2"></script>
 </body>
 </html>

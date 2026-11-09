@@ -36,6 +36,8 @@ function waitRun(song, hands, seed) {
     const res = ear.match(s.notes, { from: arm - 250, used, only: s.notes.filter(m => !hit[m]) });
     for (const [m, o] of Object.entries(res)) { ear.take(+m, o, used); hit[m] = 1; if (!next && o.t < stuck - 30 && dbg) { const ps = ear.partsS[+m - 21], bs = 48000 / 2048; console.log('   ALT: Taste', m, 'Anschlag', Math.round(o.t), 'gespielt', Math.round(stuck), 'att', ear.attack(+m, o, s.notes), 'Teiltöne', ps.map(([b, odd]) => Math.round(b * bs) + (odd ? 'u' : 'g')).join(' ')); }
       if (next) { early++; if (dbg) { const now = ear.hist[ear.hist.length - 1], bf = ear.frameAt(o.t - 15), i = +m - 21; console.log('   früh: Taste', m, 'Schritt davor', JSON.stringify(st[idx - 1]?.notes), 'att', ear.attack(+m, o, s.notes), 'eB', bf.E[i].toExponential(1), 'eN', now.E[i].toExponential(1), 'thr', ear.thr(+m).toExponential(1), 'alter', Math.round(t - o.t), 'why', ear.why); } } if (dbg) console.log('  Schritt', idx, 'Taste', m, 'Anschlag', o.id, Math.round(o.t), 'jetzt', Math.round(t), 'gespielt', Math.round(stuck), next ? '(noch nicht gespielt!)' : ''); }
+    // wie im Spiel: Akkord teilweise frisch angeschlagen → deutlich klingende übrige Töne (gehaltener Bass) zählen mit
+    if (s.notes.length > 1 && s.notes.some(m => hit[m])) for (const m of s.notes) if (!hit[m] && ear.present(m, s.notes)) hit[m] = 1;
     wrong += ear.wrong.filter(w => !s.notes.includes(w.m)).length; ear.wrong = [];
     if (s.notes.every(m => hit[m])) { idx++; arm = t; hit = {}; next = t + 150 + rnd() * 200; }
     else if (!next && t - stuck > 2500) {
