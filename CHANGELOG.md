@@ -1,5 +1,8 @@
 # Neuerungen
 
+## 1.1.1 – 16.11.2026
+- Bestenliste: Rekorde aus Needle Drop werden jetzt auch von hier aus gemeldet (gemeinsame sync.js)
+
 ## 1.1.0 – 09.11.2026
 - **Ohne Klavier ausprobieren**: Knopf auf der Startseite und „Spielen mit: Klavier / Bildschirm“ auf jeder Lied-Seite. Die Bildschirmtasten klingen jetzt, und man kann auch in die Spalte über einer Taste tippen.
 - 6 neue Stücke: Zum Geburtstag viel Glück, Old MacDonald, Row Row Row Your Boat, Amazing Grace, Kanon in D (Pachelbel) und In der Halle des Bergkönigs (Grieg) – jetzt 23 Lieder.
