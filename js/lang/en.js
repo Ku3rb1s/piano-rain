@@ -84,7 +84,7 @@
     "Die Noten zusätzlich wie im Notenheft – so lernst du nebenbei Noten lesen": "The notes also as on sheet music – so you learn to read music along the way",
     "Die Weihnachtslieder aus allen Stufen – passend zum Advent.": "The Christmas songs from every level – just right for Advent.",
     "Diese Datei konnte nicht gelesen werden. Nur MIDI-Dateien (.mid) mit Klaviernoten.": "This file couldn’t be read. Only MIDI files (.mid) with piano notes.",
-    "Dieser Browser erlaubt hier kein Mikrofon. Öffne Piano Rain in Safari oder Chrome über https://ku3rb1s.github.io.": "This browser doesn’t allow a microphone here. Open Piano Rain in Safari or Chrome via https://ku3rb1s.github.io.",
+    "Dieser Browser erlaubt hier kein Mikrofon. Öffne Piano Rain in Safari oder Chrome über https://jukeboxquiz.de.": "This browser doesn’t allow a microphone here. Open Piano Rain in Safari or Chrome via https://jukeboxquiz.de.",
     "Drei Sterne": "Three stars",
     "Du kannst das jederzeit in den Einstellungen wiederholen.": "You can repeat this any time in the settings.",
     "Eigene MIDI-Dateien bleiben nur auf diesem Gerät. Sie werden nie hochgeladen und nicht abgeglichen.": "Your own MIDI files stay on this device only. They are never uploaded or synced.",

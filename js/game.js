@@ -3,7 +3,7 @@
    Warten: das Lied hält an, bis der Ton (Akkord) kommt. Im Takt: das Lied läuft im gewählten Tempo, Treffer zählen.
    Liederbuch: js/songs.js. Eigene MIDI-Dateien („Meine Lieder“) bleiben in IndexedDB auf dem Gerät.
    Test ohne Klavier: ?test=1 (Bildschirmtasten erzeugen Klaviertöne, die durch die echte Erkennung gehen), &auto=1 spielt mit. */
-const APP_VERSION = '1.1.2', APP_DATE = '24.11.2026'; // bei jedem Update erhöhen + CHANGELOG.md ergänzen
+const APP_VERSION = '1.1.3', APP_DATE = '24.11.2026'; // bei jedem Update erhöhen + CHANGELOG.md ergänzen
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const { Ear, TestMic, Mic, freqOf } = PR_EAR;
@@ -20,7 +20,7 @@ const QS = new URLSearchParams(location.search);
 const TEST = QS.has('test');
 const DEBUG = QS.has('debug');                           // ?debug=1: Werte des Gehörs einblenden (zum Abstimmen mit dem echten Klavier)
 
-// Gespeichert wird mit „pr.“ vorne – alle Spiele teilen sich den Browser-Speicher von ku3rb1s.github.io
+// Gespeichert wird mit „pr.“ vorne – alle Spiele teilen sich den Browser-Speicher von jukeboxquiz.de
 const LS = {
   get(k, d) { try { const v = localStorage.getItem('pr.' + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
   set(k, v) { try { localStorage.setItem('pr.' + k, JSON.stringify(v)); } catch {} },
@@ -796,7 +796,7 @@ function calError(e) {
   $('#calErrTxt').textContent = micErrText(e);
 }
 function micErrText(e) {
-  if (!navigator.mediaDevices?.getUserMedia || !isSecureContext) return tx('Dieser Browser erlaubt hier kein Mikrofon. Öffne Piano Rain in Safari oder Chrome über https://ku3rb1s.github.io.');
+  if (!navigator.mediaDevices?.getUserMedia || !isSecureContext) return tx('Dieser Browser erlaubt hier kein Mikrofon. Öffne Piano Rain in Safari oder Chrome über https://jukeboxquiz.de.');
   if (e?.name === 'NotAllowedError') return tx('Das Mikrofon ist nicht erlaubt. In Safari: „aA“ in der Adressleiste → Website-Einstellungen → Mikrofon → Erlauben.');
   if (e?.name === 'NotFoundError') return tx('Kein Mikrofon gefunden.');
   return tx('Das Mikrofon ließ sich nicht öffnen.');

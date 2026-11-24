@@ -84,7 +84,7 @@
     "Die Noten zusätzlich wie im Notenheft – so lernst du nebenbei Noten lesen": "Las notas también como en una partitura: así aprendes a leer música de paso",
     "Die Weihnachtslieder aus allen Stufen – passend zum Advent.": "Los villancicos de todos los niveles, ideales para el Adviento.",
     "Diese Datei konnte nicht gelesen werden. Nur MIDI-Dateien (.mid) mit Klaviernoten.": "No se pudo leer este archivo. Solo archivos MIDI (.mid) con notas de piano.",
-    "Dieser Browser erlaubt hier kein Mikrofon. Öffne Piano Rain in Safari oder Chrome über https://ku3rb1s.github.io.": "Este navegador no permite el micrófono aquí. Abre Piano Rain en Safari o Chrome desde https://ku3rb1s.github.io.",
+    "Dieser Browser erlaubt hier kein Mikrofon. Öffne Piano Rain in Safari oder Chrome über https://jukeboxquiz.de.": "Este navegador no permite el micrófono aquí. Abre Piano Rain en Safari o Chrome desde https://jukeboxquiz.de.",
     "Drei Sterne": "Tres estrellas",
     "Du kannst das jederzeit in den Einstellungen wiederholen.": "Puedes repetirlo cuando quieras en los ajustes.",
     "Eigene MIDI-Dateien bleiben nur auf diesem Gerät. Sie werden nie hochgeladen und nicht abgeglichen.": "Tus archivos MIDI se quedan solo en este dispositivo. Nunca se suben ni se sincronizan.",
