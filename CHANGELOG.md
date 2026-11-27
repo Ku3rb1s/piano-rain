@@ -1,5 +1,8 @@
 # Neuerungen
 
+## 1.1.4 – 28.11.2026
+- Vorbereitung für die Jukebox-App fürs iPhone: Dort fällt „Als App installieren“ weg
+
 ## 1.1.3 – 24.11.2026
 - Läuft jetzt unter der eigenen Adresse jukeboxquiz.de (alte Links leiten automatisch weiter)
 

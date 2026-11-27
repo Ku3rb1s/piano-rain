@@ -3,7 +3,7 @@
    Warten: das Lied hält an, bis der Ton (Akkord) kommt. Im Takt: das Lied läuft im gewählten Tempo, Treffer zählen.
    Liederbuch: js/songs.js. Eigene MIDI-Dateien („Meine Lieder“) bleiben in IndexedDB auf dem Gerät.
    Test ohne Klavier: ?test=1 (Bildschirmtasten erzeugen Klaviertöne, die durch die echte Erkennung gehen), &auto=1 spielt mit. */
-const APP_VERSION = '1.1.3', APP_DATE = '24.11.2026'; // bei jedem Update erhöhen + CHANGELOG.md ergänzen
+const APP_VERSION = '1.1.4', APP_DATE = '28.11.2026'; // bei jedem Update erhöhen + CHANGELOG.md ergänzen
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const { Ear, TestMic, Mic, freqOf } = PR_EAR;
