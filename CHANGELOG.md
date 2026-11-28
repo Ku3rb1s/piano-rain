@@ -1,5 +1,8 @@
 # Neuerungen
 
+## 1.1.5 – 28.11.2026
+- Töne stellst du jetzt einmal in der Jukebox ein – für alle Spiele
+
 ## 1.1.4 – 28.11.2026
 - Vorbereitung für die Jukebox-App fürs iPhone: Dort fällt „Als App installieren“ weg
 

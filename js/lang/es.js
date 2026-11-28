@@ -134,7 +134,6 @@
     "Kleine Stücke der großen Komponisten – mit beiden Händen.": "Piezas cortas de los grandes compositores, con las dos manos.",
     "Kurz still …": "Silencio …",
     "Kurz still sein …": "Un momento de silencio …",
-    "Kurzer Klang am Ende eines Lieds, Konfetti bei drei Sternen": "Un sonido corto al final de cada canción, confeti con tres estrellas",
     "Lautstärke am Klavier mittel, im Raum möglichst ruhig.": "Volumen del piano medio y la habitación lo más tranquila posible.",
     "Lied beenden? Es wird nicht gewertet.": "¿Terminar la canción? No contará.",
     "Lieder & Daten": "Canciones y datos",
@@ -219,7 +218,6 @@
     "Tippe auf „Teilen“": "Toca «Compartir»",
     "Tippe auf Weiter, wenn du bereit bist.": "Toca Continuar cuando estés listo.",
     "Töne": "notas",
-    "Töne & Konfetti": "Sonidos y confeti",
     "Treffer": "Aciertos",
     "Überspringen": "Omitir",
     "Übungs-Serie": "Racha de práctica",
@@ -243,5 +241,7 @@
     "Zum Ausprobieren ohne Klavier – tippen statt spielen": "Para probar sin piano: tocar la pantalla en vez del piano",
     "Zur Jukebox": "A la Jukebox",
     "Zur Startseite": "Ir al inicio",
+    // Töne und Vibration (Jukebox)
+    "Töne und Vibration stellst du in der Jukebox ein.": "Los sonidos y la vibración se ajustan en la Jukebox.",
   }
 };

@@ -134,7 +134,6 @@
     "Kleine Stücke der großen Komponisten – mit beiden Händen.": "Små stykker av de store komponistene – med begge hender.",
     "Kurz still …": "Stille …",
     "Kurz still sein …": "Stille et øyeblikk …",
-    "Kurzer Klang am Ende eines Lieds, Konfetti bei drei Sternen": "En kort lyd på slutten av en sang, konfetti ved tre stjerner",
     "Lautstärke am Klavier mittel, im Raum möglichst ruhig.": "Middels volum på pianoet, så stille som mulig i rommet.",
     "Lied beenden? Es wird nicht gewertet.": "Avslutte sangen? Den telles ikke.",
     "Lieder & Daten": "Sanger og data",
@@ -219,7 +218,6 @@
     "Tippe auf „Teilen“": "Trykk på «Del»",
     "Tippe auf Weiter, wenn du bereit bist.": "Trykk på Fortsett når du er klar.",
     "Töne": "toner",
-    "Töne & Konfetti": "Lyder og konfetti",
     "Treffer": "Treff",
     "Überspringen": "Hopp over",
     "Übungs-Serie": "Øvingsrekke",
@@ -243,5 +241,7 @@
     "Zum Ausprobieren ohne Klavier – tippen statt spielen": "For å prøve uten piano – trykk i stedet for å spille",
     "Zur Jukebox": "Til Jukebox",
     "Zur Startseite": "Til forsiden",
+    // Töne und Vibration (Jukebox)
+    "Töne und Vibration stellst du in der Jukebox ein.": "Lyder og vibrasjon stiller du inn i Jukeboxen.",
   }
 };

@@ -3,7 +3,7 @@
    Warten: das Lied hält an, bis der Ton (Akkord) kommt. Im Takt: das Lied läuft im gewählten Tempo, Treffer zählen.
    Liederbuch: js/songs.js. Eigene MIDI-Dateien („Meine Lieder“) bleiben in IndexedDB auf dem Gerät.
    Test ohne Klavier: ?test=1 (Bildschirmtasten erzeugen Klaviertöne, die durch die echte Erkennung gehen), &auto=1 spielt mit. */
-const APP_VERSION = '1.1.4', APP_DATE = '28.11.2026'; // bei jedem Update erhöhen + CHANGELOG.md ergänzen
+const APP_VERSION = '1.1.5', APP_DATE = '28.11.2026'; // bei jedem Update erhöhen + CHANGELOG.md ergänzen
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const { Ear, TestMic, Mic, freqOf } = PR_EAR;
@@ -29,8 +29,10 @@ const sharedTheme = {
   get() { try { return JSON.parse(localStorage.getItem('mq.theme')) || 'graphit'; } catch { return 'graphit'; } },
   set(v) { try { localStorage.setItem('mq.theme', JSON.stringify(v)); } catch {} },
 };
-const opt = Object.assign({ mode: 'wait', speed: 0.75, hands: 'r', staff: false, names: true, sfx: true, input: 'mic', tab: '' }, LS.get('opt', {}));
+const opt = Object.assign({ mode: 'wait', speed: 0.75, hands: 'r', staff: false, names: true, input: 'mic', tab: '' }, LS.get('opt', {}));
 opt.theme = sharedTheme.get();
+// Töne gelten für alle Spiele und werden in der Jukebox eingestellt (Prefs in js/profile.js) – nicht mit „opt“ gespeichert
+Object.defineProperty(opt, 'sfx', { get: () => Prefs.sfx, set() {} });
 const saveOpt = () => { const { theme, ...o } = opt; LS.set('opt', o); };
 
 /* ---------- Notennamen (je Sprache) ---------- */
@@ -932,7 +934,7 @@ function applyTheme() {
   $('#themeRow').innerHTML = THEMES.map(([id, name, a, b]) => `<button class="theme-pick ${th === id ? 'on' : ''}" data-theme-pick="${id}"><i style="background:linear-gradient(135deg,${a},${b})"></i>${tx(name)}</button>`).join('');
 }
 function renderSettings() {
-  $('#setSfx').checked = !!opt.sfx; $('#setNames2').checked = !!opt.names; $('#setStaff2').checked = !!opt.staff;
+  $('#setNames2').checked = !!opt.names; $('#setStaff2').checked = !!opt.staff;
   $('#subView').textContent = [opt.names ? tx('Notennamen an') : tx('Notennamen aus'), opt.staff ? tx('Notenlinien an') : tx('Notenlinien aus')].join(' · ');
   $('#subDesign').textContent = tx((THEMES.find(x => x[0] === opt.theme) || THEMES[0])[1]);
   const c = LS.get('cal', null);
@@ -1043,7 +1045,6 @@ $('#navBack').onclick = () => goPage('main', true);
 $('#profEmoji').onclick = () => Profile.pick(e => { $('#profEmoji').textContent = e; });
 $('#profName').oninput = () => Profile.set({ name: $('#profName').value });
 $('#profName').onkeydown = e => { if (e.key === 'Enter') $('#profName').blur(); };
-$('#setSfx').onchange = e => { opt.sfx = e.target.checked; saveOpt(); renderSettings(); sound('ok'); };
 $('#setNames2').onchange = e => { opt.names = e.target.checked; saveOpt(); renderSettings(); };
 $('#setStaff2').onchange = e => { opt.staff = e.target.checked; saveOpt(); renderSettings(); };
 $$('input[name=inp]').forEach(r => r.onchange = () => { opt.input = r.value; saveOpt(); renderSettings(); });

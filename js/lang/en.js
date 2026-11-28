@@ -134,7 +134,6 @@
     "Kleine Stücke der großen Komponisten – mit beiden Händen.": "Short pieces by the great composers – with both hands.",
     "Kurz still …": "Quiet, please …",
     "Kurz still sein …": "Quiet for a moment …",
-    "Kurzer Klang am Ende eines Lieds, Konfetti bei drei Sternen": "A short sound at the end of a song, confetti for three stars",
     "Lautstärke am Klavier mittel, im Raum möglichst ruhig.": "Piano volume medium, the room as quiet as possible.",
     "Lied beenden? Es wird nicht gewertet.": "End the song? It won’t count.",
     "Lieder & Daten": "Songs & data",
@@ -219,7 +218,6 @@
     "Tippe auf „Teilen“": "Tap “Share”",
     "Tippe auf Weiter, wenn du bereit bist.": "Tap Continue when you’re ready.",
     "Töne": "notes",
-    "Töne & Konfetti": "Sounds & confetti",
     "Treffer": "Hits",
     "Überspringen": "Skip",
     "Übungs-Serie": "Practice streak",
@@ -243,5 +241,7 @@
     "Zum Ausprobieren ohne Klavier – tippen statt spielen": "To try without a piano – tap instead of play",
     "Zur Jukebox": "To the Jukebox",
     "Zur Startseite": "Back to home",
+    // Töne und Vibration (Jukebox)
+    "Töne und Vibration stellst du in der Jukebox ein.": "You set sounds and vibration in the Jukebox.",
   }
 };

@@ -134,7 +134,6 @@
     "Kleine Stücke der großen Komponisten – mit beiden Händen.": "Petites pièces des grands compositeurs – à deux mains.",
     "Kurz still …": "Silence …",
     "Kurz still sein …": "Silence un instant …",
-    "Kurzer Klang am Ende eines Lieds, Konfetti bei drei Sternen": "Un petit son à la fin d’un morceau, des confettis pour trois étoiles",
     "Lautstärke am Klavier mittel, im Raum möglichst ruhig.": "Volume du piano moyen, la pièce aussi calme que possible.",
     "Lied beenden? Es wird nicht gewertet.": "Arrêter le morceau ? Il ne sera pas compté.",
     "Lieder & Daten": "Morceaux & données",
@@ -219,7 +218,6 @@
     "Tippe auf „Teilen“": "Touche « Partager »",
     "Tippe auf Weiter, wenn du bereit bist.": "Touche Continuer quand tu es prêt.",
     "Töne": "notes",
-    "Töne & Konfetti": "Sons et confettis",
     "Treffer": "Réussite",
     "Überspringen": "Passer",
     "Übungs-Serie": "Série d’entraînement",
@@ -243,5 +241,7 @@
     "Zum Ausprobieren ohne Klavier – tippen statt spielen": "Pour essayer sans piano – toucher au lieu de jouer",
     "Zur Jukebox": "Vers la Jukebox",
     "Zur Startseite": "Retour à l'accueil",
+    // Töne und Vibration (Jukebox)
+    "Töne und Vibration stellst du in der Jukebox ein.": "Les sons et la vibration se règlent dans la Jukebox.",
   }
 };
